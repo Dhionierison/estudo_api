@@ -6,7 +6,11 @@ class ProductsController < ApplicationController
     @products = Product.all
   end  
 
-  def show; end  
+  def show
+    @product = Product.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to products_path, alert: "Produto não encontrado."
+  end
 
   def new
     @product = Product.new
@@ -20,6 +24,12 @@ class ProductsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end  
+
+  def destroy 
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to products_url
+  end
 
   def edit; end
 
