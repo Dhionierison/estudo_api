@@ -1,0 +1,9 @@
+<h1>Detalhe do Item</h1>
+<h1><%= @product.name %></h1>
+<p><%= @product.description %></p>
+<p>Preço: <%= number_to_currency(@product.price) %></p>
+
+
+<%= link_to 'Voltar', products_path %> | 
+<%= link_to 'Editar', edit_product_path(@product) %> |
+<%= button_to 'Apagar', product_path(@product), method: :delete, data: { confirm: 'Tem certeza que deseja apagar este produto?' }, class: 'btn btn-danger' %>   
